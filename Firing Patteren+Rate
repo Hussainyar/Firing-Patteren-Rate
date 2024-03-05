@@ -1,0 +1,28 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the data from CSV files
+df_firing = pd.read_csv('firing_data.csv')
+df_spike_counts = pd.read_csv('spike_counts_data.csv')
+
+# Plotting
+plt.figure(figsize=(12, 8))
+
+# Subplot 1: Raster plot of spikes
+plt.subplot(2, 1, 1)  # 2 rows, 1 column, 1st subplot
+plt.scatter(df_firing['Firing Timing'], df_firing['Firing Label'], s=3)  # Small dot size
+plt.title('Neuron Spiking Activity')
+plt.ylabel('Neuron ID')
+#plt.xlabel('Time (ms)')
+plt.xlim(90, 100)
+
+# Subplot 2: Spike Count per Time Bin
+plt.subplot(2, 1, 2)  # 2 rows, 1 column, 2nd subplot
+plt.plot(df_spike_counts['Time Bin Midpoint'], df_spike_counts['Spike Count'])
+#plt.title('Network Activity Over Time')
+plt.ylabel('Spike Count')
+plt.xlabel('Time (ms)')
+plt.xlim(90, 100)
+
+plt.tight_layout()
+plt.show()
